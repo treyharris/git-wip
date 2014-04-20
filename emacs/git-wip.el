@@ -5,7 +5,8 @@
 
 (defun git-wip-if-git ()
   (interactive)
-  (when (string= (vc-backend (buffer-file-name)) "Git")
+  (when (string= (downcase (symbol-name (vc-backend (buffer-file-name))))
+                 "git")
     (git-wip-wrapper)))
 
 (add-hook 'after-save-hook 'git-wip-if-git)

@@ -35,7 +35,8 @@ you save a buffer."
 
 (defun git-wip-mode-if-git ()
   (interactive)
-  (when (string= (vc-backend (buffer-file-name)) "Git")
+  (when (string= (downcase (symbol-name (vc-backend (buffer-file-name))))
+                 "git")
     (git-wip-mode t)))
 
 (add-hook 'find-file-hook 'git-wip-mode-if-git)
